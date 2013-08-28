@@ -29,7 +29,7 @@ An list with the following elements:
 \item{diff.c}{the index (or two indexes, in case of a three-component input model) of the identified differential component.}
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

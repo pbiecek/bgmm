@@ -25,8 +25,7 @@ Przemyslaw Biecek \& Ewa Szczurek
 Maintainer: Przemyslaw Biecek <P.Biecek@mimuw.edu.pl>
 }
 \references{
-Biecek P, Szczurek E, Tiuryn J, Vingron M., ...., submitted.
-...
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \keyword{ package }
 \seealso{

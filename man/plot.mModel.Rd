@@ -10,7 +10,7 @@ If data has more than two dimensions thus graphs are presented on the subspace g
 That gives different results than data reduction prior to modeling process.
 }
 \usage{
-plot.mModel(x, ...)
+\method{plot}{mModel}(x, ...)
 }
 
 \arguments{
@@ -28,7 +28,7 @@ plot.mModel(x, ...)
   
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

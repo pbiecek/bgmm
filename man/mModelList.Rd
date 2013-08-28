@@ -55,7 +55,7 @@ An object of the class mModelList, with the following slots:
 \item{kList}{equals the input argument \code{kList}}
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

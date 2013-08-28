@@ -31,7 +31,7 @@ chooseOptimal(models, penalty=2, ...)
 An object of the class \code{\link{mModelList}} or \code{\link{mModel}}.
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

@@ -7,7 +7,7 @@ Predictions for fitted Gaussian component model
 For every row in the matrix \code{X} the posterior probability of belonging to class \code{i} is calculated.
 }
 \usage{
-predict.mModel(object, X, knowns = NULL, B = NULL, P = NULL, ...)
+\method{predict}{mModel}(object, X, knowns = NULL, B = NULL, P = NULL, ...)
 }
 \arguments{
   \item{object}{an object of the class \code{mModel},   }
@@ -32,7 +32,7 @@ An list with the following elements:
   http://bgmm.molgen.mpg.de
 }
 \author{
-Przemyslaw Biecek
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \seealso{\code{\link{belief}}}
 \examples{

@@ -42,7 +42,7 @@ A list with the following elements:
 \item{cvar}{ a three-dimensional matrix with the covariance matrices with the initial values for \code{k} components.} 
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

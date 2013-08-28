@@ -38,7 +38,7 @@ For each model the error is calculated as average absolute differences between t
 \value{
 The list with three vectors: errors calculated as mean absolute differences between estimated posteriors and initial beliefs for known cases, indexes of folds for both labeled and unlabeled cases. }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

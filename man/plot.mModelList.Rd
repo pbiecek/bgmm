@@ -7,7 +7,7 @@ Plotting a graphical visualization of a model or a list of models
 The function \code{plot.mModelList()} creates a grid of panels and then plots a set of input fitted models in the consecutive panels. The \code{plot.mModel()} function is used to plot each single model.
 }
 \usage{
-plot.mModelList(x, ...)
+\method{plot}{mModelList}(x, ...)
 }
 
 \arguments{
@@ -21,7 +21,7 @@ in the resulting grid of panels columns correspond to the different model struct
 If considered models differ only by component numbers or only by the model structures, the grid of panels is as close to square as possible and consecutive panels contain consecutive models from the list of models \code{x}.
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \seealso{\code{\link{plot.mModel}}}
 \author{

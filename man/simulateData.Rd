@@ -32,7 +32,7 @@ An list with the following elements:
  \item{Ytrue}{indexes of the true Gaussian components from which each observation was generated.}
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

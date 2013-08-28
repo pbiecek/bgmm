@@ -41,7 +41,7 @@ The best model, i.e. model with the smallest GIC score is marked with a star on 
 \value{
 The matrix with GIC scores calculated for the list of models specified by the \code{models} argument. }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

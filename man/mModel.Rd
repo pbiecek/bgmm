@@ -103,7 +103,7 @@ An object of the class \code{mModel}, with the following slots:
 \item{model.structure}{the set of constraints kept during the fitting process.}
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek

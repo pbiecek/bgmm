@@ -21,7 +21,7 @@ getModelStructure(mean = "D", between = "D", within = "D", cov = "D")
 List of four elements specifying the constraints on 1) relations between the component means, 2) relations between the covariance matrices of the model components, 3) relations within each covariance matrix and 4) the covariances within each matrix. By default, the function returns an unconstrained structure.
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Ewa Szczurek

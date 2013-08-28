@@ -1,19 +1,22 @@
-citHeader("To cite the R package 'bgmm' in publications use:")
+citHeader("To cite bgmm in publications use:")
 
-citEntry(entry  = "unpublished",
-         title  = "Introducing knowledge into differential expression analysis",
-         author = personList(
-                 person(first="Ewa", last="Szczurek",
-                        email="szczurek@molgen.mpg.de"),
-                 person(first="Przemyslaw", last="Biecek",
-                        email="pbiecek@m imuw.edu.pl"),
-                 person(first="Jerzy", last="Tiuryn"),
-                 person(first="Martin", last="Vingron")),
-         year = 2010,
-         note = "Webpage: http://bgmm.molgen.mpg.de/",
-         textVersion = paste(
-         "E. Szczurek, P. Biecek, J. Tiuryn and M. Vingron (2010)",
-         "Introducing knowledge into differential expression analysis",
-         "J Comput Biol., 17(8):953--67")
-         )
+citEntry(entry = "Article",
+  title        = "The {R} Package {bgmm}: Mixture Modeling with Uncertain Knowledge",
+  author       = personList(as.person("Przemys{\\l}aw Biecek"),
+                   as.person("Ewa Szczurek"),
+                   as.person("Martin Vingron"),
+                   as.person("Jerzy Tiuryn")),
+  journal      = "Journal of Statistical Software",
+  year         = "2012",
+  volume       = "47",
+  number       = "3",
+  pages        = "1--32",
+  url          = "http://www.jstatsoft.org/v47/i03/",
+
+  textVersion  =
+  paste("Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012).",
+        "The R Package bgmm: Mixture Modeling with Uncertain Knowledge.",
+        "Journal of Statistical Software, 47(3), 1-32.",
+        "URL http://www.jstatsoft.org/v47/i03/.")
+)
 

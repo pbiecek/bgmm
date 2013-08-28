@@ -9,7 +9,7 @@ Set of supplementary functions for bgmm package
 Set of supplementary functions for \code{bgmm} package.
 }
 \usage{
- determinant.numeric(x, logarithm = TRUE, ...)
+\method{determinant}{numeric}(x, logarithm = TRUE, ...)
  
  map(B) 
  
@@ -25,7 +25,7 @@ Set of supplementary functions for \code{bgmm} package.
   \item{logarithm, \dots}{these arguments are ignored. }
 }
 \references{
-  http://bgmm.molgen.mpg.de
+  Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
 }
 \author{
 Przemyslaw Biecek
