@@ -1,0 +1,24 @@
+export(
+   # fit for single model 
+   belief, soft, supervised, semisupervised, unsupervised, 
+
+   # fit for list of  models 
+   softList, beliefList, mModelList, semisupervisedList,
+
+   # predict for model
+   predict.mModel,
+   
+   # initialize model parameters
+   init.model.params.knowns, init.model.params,
+
+   # plot single model or list of models
+   plot.mModel, plotGIC, plot.mModelList,
+   getGIC, getDF, crossval,
+
+   # utils
+   map, loglikelihood.mModel, 
+   chooseModels, chooseOptimal,
+   getModelStructure,
+   simulateData, determinant.numeric,
+   DEprobs
+)
