@@ -24,7 +24,8 @@ soft.e.step <- function(X, model.params) {
 
   fik = exp(lfik)
   tij = t(t(p.ik) * model.params$pi) * fik
-  n.ltij = log(rowSums(tij))
+  margintij <- pmax(rowSums(tij), 10*.Machine$double.eps) # machine epsilon
+  n.ltij = log(margintij)
   log.likelihood = sum(n.ltij)
   tij = tij/exp(n.ltij)
   # normalisation step
