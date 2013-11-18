@@ -26,7 +26,7 @@ soft.e.step <- function(X, model.params) {
   # numeric problems, trying to adjust
   lcorrection <- 0
   if (max(fik) == 0) {
-  	lcorrection <- max(lfik) 
+  	lcorrection <- min(apply(lfik, 2, max)) 
   	lfik = lfik - lcorrection
     fik = exp(lfik)
   }
