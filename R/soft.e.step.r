@@ -23,10 +23,17 @@ soft.e.step <- function(X, model.params) {
 #  repeat.rows(rep(-log(model.params$k), model.params$k), model.params$n-model.params$m))
 
   fik = exp(lfik)
+  # numeric problems, trying to adjust
+  lcorrection <- 0
+  if (max(fik) == 0) {
+  	lcorrection <- max(lfik) 
+  	lfik = lfik - lcorrection
+    fik = exp(lfik)
+  }
   tij = t(t(p.ik) * model.params$pi) * fik
   margintij <- pmax(rowSums(tij), 10*.Machine$double.eps) # machine epsilon
   n.ltij = log(margintij)
-  log.likelihood = sum(n.ltij)
+  log.likelihood = sum(n.ltij + lcorrection)
   tij = tij/exp(n.ltij)
   # normalisation step
   
