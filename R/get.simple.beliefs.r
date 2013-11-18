@@ -76,7 +76,7 @@ init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(c
       model.params = list(pi = pro, mu = mu, cvar = cvar)
     }
     if (!is.null(knowns) & !is.null(class)) {
-       clParams     = bgmm:::clusterAssigmentMeans(knowns, class, model.params$mu)
+       clParams     = clusterAssigmentMeans(knowns, class, model.params$mu)
        model.params = permute.model.params(model.params, clParams$li)
     }
  }
