@@ -12,7 +12,8 @@ Description: The bgmm package implements two partially supervised
         mixture modeling.  The package can be applied also to selection
         of the best-fitting from a set of models with different
         component numbers or constraints on their structures.
-Reference: Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy
+        For detailed introduction see:
+        Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy
         Tiuryn (2012), The R Package bgmm: Mixture Modeling with
         Uncertain Knowledge, Journal of Statistical Software.
 Maintainer: Przemyslaw Biecek <P.Biecek@mimuw.edu.pl>
