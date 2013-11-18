@@ -178,7 +178,6 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
 #
 bgmm.internal <- function(internal.funct=belief.internal, init.params, ..., all.possible.permutations=all.possible.permutations) {
   if (all.possible.permutations) {
-    require(combinat)
     resmax = NULL
     likemax = -Inf
     lpermut = permn(seq_along(init.params$mu))
