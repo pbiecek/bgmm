@@ -248,9 +248,10 @@ fij.mModel <- function(model, X) {
   for (i in 1:model$k) {
       if (model$d > 1) {
          ss = svd(model$cvar[i,,])
-         matc = t(ss$u) %*% diag(ss$d^(-1/2)) %*% ss$v
+         rtas <- ss$d
+         matc = t(ss$u[rtas > 10^-8, ]) %*% diag(rtas[rtas > 10^-8]^(-1/2)) %*% ss$v[rtas > 10^-8,]
          tx = apply(X, 1, get("-"), model$mu[i,,drop=F])
-         lfik[,i] <-  -colSums((matc %*% tx)^2)/2 - sum(log(2*pi*ss$d))/2
+         lfik[,i] <-  -colSums((matc %*% tx)^2)/2 - sum(log(2*pi*rtas[rtas > 10^-8]))/2
        } else {
         lfik[,i] <-   dnorm(X, model$mu[i,,drop=F], sqrt(model$cvar[i,,]), log=T)
        }
