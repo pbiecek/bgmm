@@ -29,10 +29,10 @@ soft.e.step <- function(X, model.params) {
   	lcorrection <- max(lfik) 
   	lfik = lfik - lcorrection
   	# unbalanced case
-  	toCorr <- which(apply(lfik, 2, max) < -16)
+  	toCorr <- which(apply(lfik, 2, max) < -10)
   	if (length(toCorr)>0) {
   		for (correct in toCorr) 
-  		  lfik[, correct] <- lfik[, correct] - max( lfik[, 2]) - 16
+  		  lfik[, correct] <- lfik[, correct] - max( lfik[, correct]) - 10
   	}
     fik = exp(lfik)
   }
