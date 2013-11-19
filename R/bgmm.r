@@ -13,9 +13,10 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   for (i in 1:object$k) {
       if (object$d > 1) {
          ss = svd(object$cvar[i,,])
-         matc = t(ss$u) %*% diag(ss$d^(-1/2)) %*% ss$v
+         rtas <- ss$d
+         matc = t(ss$u[rtas > 10^-8, ]) %*% diag(rtas[rtas > 10^-8]^(-1/2)) %*% ss$v[rtas > 10^-8,]
          tx = apply(X, 1, get("-"), object$mu[i,,drop=F])
-         fik[,i] <- exp(-colSums((matc %*% tx)^2)/2)/sqrt(prod(2*pi*ss$d))
+         fik[,i] <- exp(-colSums((matc %*% tx)^2)/2)/sqrt(prod(2*pi*rtas[rtas > 10^-8]))
        } else {
          tx = apply(X, 1, get("-"), object$mu[i,,drop=F])
          fik[,i] <- exp(-(tx^2)/(2*object$cvar[i,,]))/sqrt(prod(2*pi*object$cvar[i,,]))
