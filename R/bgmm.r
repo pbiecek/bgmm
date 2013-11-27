@@ -8,20 +8,29 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   if ((is.null(B) & is.null(P) & !is.null(knowns)) | ({!is.null(B) | !is.null(P)} & is.null(knowns))) {
      stop("If knowns are specified there should be also B or P specified as well!")
   }
-  fik <- matrix(0, nrow(X), object$k)
-  rownames(fik) = rownames(X)
+  lfik <- matrix(0, nrow(X), object$k)
+  rownames(lfik) = rownames(X)
   for (i in 1:object$k) {
       if (object$d > 1) {
          ss = svd(object$cvar[i,,])
          rtas <- ss$d
          matc = t(ss$u[rtas > 10^-8, ]) %*% diag(rtas[rtas > 10^-8]^(-1/2)) %*% ss$v[rtas > 10^-8,]
          tx = apply(X, 1, get("-"), object$mu[i,,drop=F])
-         fik[,i] <- exp(-colSums((matc %*% tx)^2)/2)/sqrt(prod(2*pi*rtas[rtas > 10^-8]))
-       } else {
+#         lfik[,i] <- exp(-colSums((matc %*% tx)^2)/2)/sqrt(prod(2*pi*rtas[rtas > 10^-8]))
+         lfik[,i] <- -colSums((matc %*% tx)^2)/2 -sum(log(2*pi*rtas[rtas > 10^-8]))/2
+      } else {
          tx = apply(X, 1, get("-"), object$mu[i,,drop=F])
-         fik[,i] <- exp(-(tx^2)/(2*object$cvar[i,,]))/sqrt(prod(2*pi*object$cvar[i,,]))
+         lfik[,i] <- -(tx^2)/(2*object$cvar[i,,]) - log(2*pi*object$cvar[i,,])/2
        }
   }
+  
+  fik <- exp(lfik)
+  # numeric problems, trying to adjust, by keeping likelihood not so far from each other
+  if (min(apply(fik, 1, max)) == 0) {
+    lfik <- t(apply(lfik, 1, function(x) x - max(x)))
+    fik = exp(lfik)
+  }
+
   b.pi <- repeat.rows(object$pi, nrow(X))
   if (!is.null(B))          # change
         b.pi[1:nrow(knowns),] = B
