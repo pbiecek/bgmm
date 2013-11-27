@@ -28,10 +28,10 @@ init.model.params.knowns <- function(knowns, class, k, d) {
  mu = matrix(0,k,d)
  pro = numeric(k)
  cvar = array(0, c(k, d, d))
- labs = 1:k
- for (i in 1:k) {
-     mu[i,] = unlist(colMeans(knowns[class==labs[i],,drop=F]))
-     cvar[i,,] = cov(knowns[class==labs[i],,drop=F])
+ labs = unique(class)
+ for (i in seq_along(labs)) {
+     mu[i,] = unlist(colMeans(knowns[class==labs[i],,drop=FALSE]))
+     cvar[i,,] = cov(knowns[class==labs[i],,drop=FALSE])
      pro[i] = mean(class==labs[i])
   } 
   list(pi = pro, mu = mu, cvar = cvar)
