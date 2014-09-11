@@ -16,6 +16,22 @@ bgmm.e.step <- function(X, model.params) {
   b.pi <- rbind(model.params$B, repeat.rows(model.params$pi, model.params$n-model.params$m))
   # normalisation step
   fb.ik = exp(lfik) * b.pi
+  
+  # numeric problems, trying to adjust, by keeping likelihood not so far from each other
+  lcorrection <- 0
+  if (max(fb.ik) == 0) {
+    lcorrection <- max(lfik) 
+    lfik = lfik - lcorrection
+    # unbalanced case
+    toCorr <- which(apply(lfik, 2, max) < -10)
+    if (length(toCorr)>0) {
+      for (correct in toCorr) 
+        lfik[, correct] <- lfik[, correct] - max( lfik[, correct]) - 10
+    }
+    fb.ik = exp(lfik) * b.pi
+  }
+  # normalisation step
+  
  list(tij =  t(apply(fb.ik, 1, normalize)), log.likelihood=sum(log(rowSums(fb.ik))) )
 }
 
