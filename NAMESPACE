@@ -22,3 +22,7 @@ export(
    simulateData, determinant.numeric,
    DEprobs
 )
+import(car)
+import(combinat)
+import(lattice)
+import(mvtnorm)
