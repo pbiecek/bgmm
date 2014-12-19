@@ -1,12 +1,11 @@
 Package: bgmm
 Type: Package
-Title: Gaussian Mixture Modeling algorithms. Including the belief-based
-        mixture modeling.
+Title: Gaussian Mixture Modeling Algorithms And The Belief-based Mixture Modeling
 Version: 1.7
 Date: 2014-08-18
 Author: Przemyslaw Biecek \& Ewa Szczurek
-Description: The bgmm package implements two partially supervised
-        mixture modeling methods: soft-label and belief-based modeling.
+Description: Two partially supervised mixture modeling methods: 
+        soft-label and belief-based modeling are implemented.
         For completeness, we equipped the package also with the
         functionality of unsupervised, semi- and fully supervised
         mixture modeling.  The package can be applied also to selection
