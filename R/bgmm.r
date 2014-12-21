@@ -64,7 +64,8 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   list(tij.X=tij.X, tij.knowns = tij.knowns, class.X=class.X, class.knowns=class.knowns)
 }
 
-supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NULL, model.structure=getModelStructure(), ...) {
+supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NULL, 
+                       model.structure=getModelStructure(), ...) {
   if (is.null(dim(knowns)) || is.data.frame(knowns)) knowns = as.matrix(knowns)
   if (is.null(class)) {
     if (!is.null(B)) {
@@ -124,7 +125,8 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
   result
 }
 
-semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),length(unique(class)),ifelse(!is.null(B),ncol(B),ncol(P))),B=NULL,P=NULL, ...,  all.possible.permutations=FALSE) {
+semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),length(unique(class)),ifelse(!is.null(B),ncol(B),ncol(P))),
+                           B=NULL,P=NULL, ...,  all.possible.permutations=FALSE, pca.dim.reduction = NA) {
   if (is.null(dim(knowns)) || is.data.frame(knowns)) knowns = as.matrix(knowns)
   if (is.null(dim(X)) || is.data.frame(X)) X = as.matrix(X)
   if (is.null(class)) {
@@ -141,10 +143,39 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
   }
   if (ncol(X) != ncol(knowns))  
       stop("number of columns in X and knowns must agree")
+
+  
+  #
+  # Dim reduction needed, since for large dimenstion fitting fails
+  if (is.na(pca.dim.reduction)) {
+    # set number od dimensions to scale
+    pca.dim.reduction <- max(ncol(B)+1, 5)
+  }
+  # reduce data with the PCA
+  if (is.numeric(pca.dim.reduction)) {
+    if (pca.dim.reduction < ncol(B)) {
+      warning("PCA reduction to dim smaller than collumns in B, fixing that")
+      pca.dim.reduction = ncol(B)
+    }
+    rotationObject <- prcomp(rbind(X,knowns))
+    X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
+    knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+  }
+  
+  
   result = soft(X, knowns, get.simple.beliefs(class, k=k, b.min=0), k=k, ..., all.possible.permutations=all.possible.permutations) 
   result$X = X
   result$knowns = knowns
   result$class = class
+  
+  # store information about roatation matrix
+  result$pca.dim.reduction <- -1
+  if (is.numeric(pca.dim.reduction)) {
+    result$rotationObject <- rotationObject
+    result$pca.dim.reduction <- pca.dim.reduction
+  }
+  
+  
   class(result) = c("semisupervisedModel", "mModel")
   result
 }
