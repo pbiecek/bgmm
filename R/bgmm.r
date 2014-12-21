@@ -181,9 +181,9 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
   }
   # reduce data with the PCA
   if (is.numeric(pca.dim.reduction)) {
-    if (pca.dim.reduction < max(ncol(B), ncol(X))) {
+    if (pca.dim.reduction < ncol(B)) {
       warning("PCA reduction to dim smaller than collumns in B, fixing that")
-      pca.dim.reduction = max(ncol(B), ncol(X))
+      pca.dim.reduction = ncol(B)
     }
     rotationObject <- prcomp(rbind(X,knowns))
     X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
