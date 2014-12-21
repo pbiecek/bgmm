@@ -8,6 +8,15 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   if ((is.null(B) & is.null(P) & !is.null(knowns)) | ({!is.null(B) | !is.null(P)} & is.null(knowns))) {
      stop("If knowns are specified there should be also B or P specified as well!")
   }
+
+  # check for dimenstion reduction
+  if (!is.null(object$rotationObject)) {
+    X <- predict(object$rotationObject, X)[,1:object$pca.dim.reduction, drop=FALSE]
+    if (!is.null(knowns)) {
+      knowns <- predict(object$rotationObject, knowns)[,1:object$pca.dim.reduction, drop=FALSE]
+    }
+  }
+  
   lfik <- matrix(0, nrow(X), object$k)
   rownames(lfik) = rownames(X)
   for (i in 1:object$k) {
@@ -54,7 +63,6 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   }
   list(tij.X=tij.X, tij.knowns = tij.knowns, class.X=class.X, class.knowns=class.knowns)
 }
-
 
 supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NULL, model.structure=getModelStructure(), ...) {
   if (is.null(dim(knowns)) || is.data.frame(knowns)) knowns = as.matrix(knowns)
@@ -141,7 +149,11 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
   result
 }
 
-belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.null(P),ncol(P),length(unique(class)))), P=NULL, class=map(B), init.params=init.model.params(X, knowns, B=B, P=P, class=class, k=k), model.structure=getModelStructure(), stop.likelihood.change=10^-5, stop.max.nsteps=100, trace=FALSE, b.min=0.025,  all.possible.permutations=FALSE) {
+belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.null(P),ncol(P),length(unique(class)))), 
+                   P=NULL, class=map(B), init.params=init.model.params(X, knowns, B=B, P=P, class=class, k=k), 
+                   model.structure=getModelStructure(), stop.likelihood.change=10^-5, stop.max.nsteps=100, 
+                   trace=FALSE, b.min=0.025,  all.possible.permutations=FALSE, pca.dim.reduction = NA) {
+  
   if (is.null(dim(knowns)) || is.data.frame(knowns)) knowns = as.matrix(knowns)
   if (is.null(dim(X)) || is.data.frame(X)) X = as.matrix(X)
   if (is.null(B)) {
@@ -160,6 +172,25 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
     B = cbind(B, matrix(0,nrow(B),k - ncol(B)))
   if (ncol(X) != ncol(knowns))  
       stop("number of columns in X and knowns must agree")
+  
+  #
+  # Dim reduction needed, since for large dimenstion fitting fails
+  if (is.na(pca.dim.reduction)) {
+    # set number od dimensions to scale
+    pca.dim.reduction <- max(ncol(B)+1, 5)
+  }
+  # reduce data with the PCA
+  if (is.numeric(pca.dim.reduction)) {
+    if (pca.dim.reduction < max(ncol(B), ncol(X))) {
+      warning("PCA reduction to dim smaller than collumns in B, fixing that")
+      pca.dim.reduction = max(ncol(B), ncol(X))
+    }
+    rotationObject <- prcomp(rbind(X,knowns))
+    X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
+    knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+  }
+  
+  
   init.params$B = B
   init.params$m = nrow(knowns)
   init.params$n = nrow(knowns) + nrow(X)
@@ -179,6 +210,12 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
 
   result$dof = getDFinternal(result)
 
+  result$pca.dim.reduction <- -1
+  if (is.numeric(pca.dim.reduction)) {
+    result$rotationObject <- rotationObject
+    result$pca.dim.reduction <- pca.dim.reduction
+  }
+  
   class(result) = c("beliefModel", "mModel")
   result
 }
@@ -353,14 +390,10 @@ chooseModels <- function(models, kList = NULL, struct = NULL) {
    models2
 }
 
-
-
 chooseOptimal <- function(models, penalty=2, ...) {
    values = sapply(models$models, getGIC, p=penalty, ...)
    models$models[[which.min(values)[1]]] 
 }
-
-
 
 crossval <- function(model=NULL, X=NULL, knowns=NULL, class=NULL, k=length(unique(class)),B=NULL,P=NULL, model.structure=getModelStructure(), ..., folds = 2, fun=belief) {
    if (!is.null(model)) {
