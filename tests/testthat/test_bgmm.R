@@ -41,3 +41,25 @@ test_that("unsupervised", {
     class(modelUnSupervised)
   }, c("softModel", "mModel" ))
 })
+
+test_that("crossval.belief", {
+  expect_equal({
+    data(genotypes)
+    modelBelief = belief(X=genotypes$X, 
+                         knowns=genotypes$knowns, B=genotypes$B)
+    res <- crossval(model = modelBelief,folds=10)
+    length(res)
+  }, 3)
+})
+
+test_that("crossval.supervised", {
+  expect_equal({
+    data(genotypes)
+    res <- crossval(model = supervised(knowns=genotypes$knowns,  
+                                class=genotypes$labels),folds=10,
+             fun = supervised)
+    length(res)
+  }, 3)
+})
+
+
