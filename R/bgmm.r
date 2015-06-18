@@ -149,13 +149,13 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
   # Dim reduction needed, since for large dimenstion fitting fails
   if (is.na(pca.dim.reduction)) {
     # set number od dimensions to scale
-    pca.dim.reduction <- max(ncol(B)+1, 5)
+    pca.dim.reduction <- max(k+1, 5)
   }
   # reduce data with the PCA
   if (is.numeric(pca.dim.reduction)) {
-    if (pca.dim.reduction < ncol(B)) {
+    if (pca.dim.reduction < k) {
       warning("PCA reduction to dim smaller than collumns in B, fixing that")
-      pca.dim.reduction = ncol(B)
+      pca.dim.reduction = k
     }
     rotationObject <- prcomp(rbind(X,knowns))
     X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
