@@ -26,17 +26,22 @@ soft <- function(X, knowns, P=NULL, k=ifelse(!is.null(P),ncol(P),ifelse(!is.null
   # Dim reduction needed, since for large dimenstion fitting fails
   if (is.na(pca.dim.reduction)) {
     # set number od dimensions to scale
-    pca.dim.reduction <- max(ncol(B)+1, 5)
+    pca.dim.reduction <- max(ncol(P)+1, 5)
   }
   # reduce data with the PCA
   if (is.numeric(pca.dim.reduction)) {
-    if (pca.dim.reduction < ncol(B)) {
-      warning("PCA reduction to dim smaller than collumns in B, fixing that")
-      pca.dim.reduction = ncol(B)
+    if (pca.dim.reduction < ncol(P)) {
+      warning("PCA reduction to dim smaller than collumns in P, fixing that")
+      pca.dim.reduction = ncol(P)
     }
-    rotationObject <- prcomp(rbind(X,knowns))
-    X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
-    knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    # is has sense only if number of columns in X is larger than pca.dim.reduction
+    if (pca.dim.reduction < ncol(X)) {
+      rotationObject <- prcomp(rbind(X,knowns))
+      X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
+      knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    } else {
+      pca.dim.reduction = FALSE
+    }
   }
   
   

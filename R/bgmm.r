@@ -162,6 +162,8 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
       rotationObject <- prcomp(rbind(X,knowns))
       X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
       knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    } else {
+      pca.dim.reduction = FALSE
     }
   }
   
