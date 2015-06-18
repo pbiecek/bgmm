@@ -22,6 +22,10 @@ export(
    simulateData, determinant.numeric,
    DEprobs
 )
+S3method(determinant, numeric)
+S3method(plot, mModel)
+S3method(plot, mModelList)
+S3method(predict, mModel)
 import(car)
 import(combinat)
 import(lattice)

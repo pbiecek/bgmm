@@ -157,11 +157,13 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
       warning("PCA reduction to dim smaller than collumns in B, fixing that")
       pca.dim.reduction = k
     }
-    rotationObject <- prcomp(rbind(X,knowns))
-    X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
-    knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    # is has sense only if number of columns in X is larger than pca.dim.reduction
+    if (pca.dim.reduction < ncol(X)) {
+      rotationObject <- prcomp(rbind(X,knowns))
+      X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
+      knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    }
   }
-  
   
   result = soft(X, knowns, get.simple.beliefs(class, k=k, b.min=0), k=k, ..., all.possible.permutations=all.possible.permutations) 
   result$X = X
