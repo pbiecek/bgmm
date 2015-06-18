@@ -57,7 +57,7 @@ unsupervised(X, k, init.params=init.model.params(X, knowns=NULL, k=k),
   \item{b.min}{this argument is passed to the \code{\link{init.model.params}} function.  }
   \item{\dots}{these arguments will be passed tothe \code{\link{init.model.params}} function.   }
   \item{all.possible.permutations}{If equal \code{TRUE}, all possible initial parameters' permutations of components are considered. Since there is kList! permutations,  model fitting is repeated kList! times. As a result, only the model with the highest likelihood is returned.}
-  \ite{pca.dim.reduction}{Since the fitting for high dimensional space is numerically a bad idea an attempt to PCA will be performed if \code{pca.dim.reduction !- FALSE}. If equal \code{NA} then the target dimension is data driven, if it's a number then this will be the target dimension.}
+  \item{pca.dim.reduction}{Since the fitting for high dimensional space is numerically a bad idea an attempt to PCA will be performed if \code{pca.dim.reduction !- FALSE}. If equal \code{NA} then the target dimension is data driven, if it's a number then this will be the target dimension.}
 }
 \details{
   In the \code{belief()} function, if the argument \code{B} is not provided, it is
