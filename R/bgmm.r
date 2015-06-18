@@ -121,6 +121,7 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
   }
   
   result$dof = getDFinternal(result)
+  result$model.structure <- model.structure
   
   result
 }
@@ -436,8 +437,12 @@ chooseOptimal <- function(models, penalty=2, ...) {
 
 crossval <- function(model=NULL, X=NULL, knowns=NULL, class=NULL, k=length(unique(class)),B=NULL,P=NULL, model.structure=getModelStructure(), ..., folds = 2, fun=belief) {
    if (!is.null(model)) {
-      X = model$X
       knowns = model$knowns
+      X = model$X
+      # may happen for fully supervised learning
+      if (is.null(X)) {
+        X <- matrix(0, 0, ncol(knowns))
+      }
       class = model$class
       B = model$B
       P = model$P
