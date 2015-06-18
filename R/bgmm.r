@@ -220,9 +220,13 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
       warning("PCA reduction to dim smaller than collumns in B, fixing that")
       pca.dim.reduction = ncol(B)
     }
-    rotationObject <- prcomp(rbind(X,knowns))
-    X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
-    knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    if (pca.dim.reduction < ncol(X)) {
+      rotationObject <- prcomp(rbind(X,knowns))
+      X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
+      knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+    } else {
+      pca.dim.reduction = FALSE
+    }
   }
   
   
