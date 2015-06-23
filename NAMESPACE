@@ -3,7 +3,7 @@ export(
    belief, soft, supervised, semisupervised, unsupervised, 
 
    # fit for list of  models 
-   softList, beliefList, mModelList, semisupervisedList,
+   softList, beliefList, mModelList, semisupervisedList, unsupervisedList,
 
    # predict for model
    predict.mModel,
