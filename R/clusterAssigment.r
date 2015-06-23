@@ -43,7 +43,7 @@ clusterAssigmentMeans <- function(knowns, class, means, method="euclidean") {
   # compute distances between X and knowns
   m = nrow(knowns)
   n = nrow(means)
-  ppdist = as.matrix(dist(rbind(means, knowns)))[(n+1):(n+m),1:n]
+  ppdist = as.matrix(dist(rbind(means, knowns)))[(n+1):(n+m),1:n, drop=FALSE]
   
   k = length(unique(class))
   kkdist = matrix(NA, k, nrow(means), dimnames=list(1:k,1:nrow(means)))
