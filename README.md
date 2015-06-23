@@ -1,5 +1,5 @@
-Beta version of bgmm package
-============================
+Dev version of bgmm package
+===========================
 
 The CRAN version is here:
 http://cran.r-project.org/web/packages/bgmm/
