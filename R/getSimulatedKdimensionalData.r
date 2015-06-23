@@ -40,7 +40,7 @@ simulateData <- function(d=2, k=4, n=100, m=10, mu=NULL, cvar=NULL, s.pi = rep(1
      }
   }
   # are covariance equal to 0?
-  if (cov=="0") {
+  if (cov=="0" && d>1) {
    for (i in 1:k) 
       cvar[i, , ] = diag(diag(cvar[i, , ]), nrow=d)
   }
