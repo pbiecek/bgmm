@@ -53,6 +53,6 @@ semisupervisedList <- function(..., funct=semisupervised)  mModelList(..., funct
 softList <- function(..., funct=soft)  mModelList(..., funct=soft)
 
 unsupervisedList <- function(X, kList = 2, ...) {
-   mModelList(X=X[-1,,drop=F], knowns=X[1,,drop=F], B=matrix(1/min(kList),1,min(kList)), ..., funct=soft)
+   mModelList(X=X[-1,,drop=F], knowns=X[1,,drop=F], B=matrix(1/min(kList),1,min(kList)), kList=kList, ..., funct=soft)
 }
 
