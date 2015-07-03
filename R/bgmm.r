@@ -165,7 +165,8 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
       knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
       
       # needs to update model params !!!
-      model.paramsK = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
+      # it's not used here
+      # init.params = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
     } else {
       pca.dim.reduction = FALSE
     }
@@ -176,13 +177,12 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
   result$knowns = knowns
   result$class = class
   
-  # store information about roatation matrix
+  # store information about rotation matrix
   result$pca.dim.reduction <- -1
   if (is.numeric(pca.dim.reduction)) {
     result$rotationObject <- rotationObject
     result$pca.dim.reduction <- pca.dim.reduction
   }
-  
   
   class(result) = c("semisupervisedModel", "mModel")
   result
@@ -230,12 +230,11 @@ belief <- function(X, knowns, B=NULL, k=ifelse(!is.null(B),ncol(B),ifelse(!is.nu
       knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
       
       # needs to update model params !!!
-      model.paramsK = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
+      init.params = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
     } else {
       pca.dim.reduction = FALSE
     }
   }
-  
   
   init.params$B = B
   init.params$m = nrow(knowns)
