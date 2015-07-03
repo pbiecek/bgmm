@@ -127,7 +127,7 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
 }
 
 semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),length(unique(class)),ifelse(!is.null(B),ncol(B),ncol(P))),
-                           B=NULL,P=NULL, ...,  all.possible.permutations=FALSE, pca.dim.reduction = NA) {
+                           B=NULL,P=NULL, ...,  init.params = NULL, all.possible.permutations=FALSE, pca.dim.reduction = NA) {
   if (is.null(dim(knowns)) || is.data.frame(knowns)) knowns = as.matrix(knowns)
   if (is.null(dim(X)) || is.data.frame(X)) X = as.matrix(X)
   if (is.null(class)) {
@@ -165,14 +165,13 @@ semisupervised <- function(X, knowns, class=NULL, k=ifelse(!is.null(class),lengt
       knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
       
       # needs to update model params !!!
-      # it's not used here
-      # init.params = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
     } else {
       pca.dim.reduction = FALSE
     }
   }
   
-  result = soft(X, knowns, get.simple.beliefs(class, k=k, b.min=0), k=k, ..., all.possible.permutations=all.possible.permutations) 
+  init.params = init.model.params(X, knowns, class = class, B = B, P=P, k = k)
+  result = soft(X, knowns, get.simple.beliefs(class, k=k, b.min=0), k=k, init.params=init.params, ..., all.possible.permutations=all.possible.permutations) 
   result$X = X
   result$knowns = knowns
   result$class = class

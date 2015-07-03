@@ -31,7 +31,7 @@ soft(X, knowns, P = NULL, k = ifelse(!is.null(P), ncol(P),
     
 semisupervised(X, knowns, class = NULL, k = ifelse(!is.null(class), 
     length(unique(class)), ifelse(!is.null(B), ncol(B), ncol(P))), 
-    B = NULL, P = NULL, ..., 
+    B = NULL, P = NULL, ..., init.params = NULL,
 	all.possible.permutations=FALSE, pca.dim.reduction = NA)    
     
 supervised(knowns, class = NULL, k = length(unique(class)), B = NULL, P = NULL, 
