@@ -16,7 +16,7 @@ Models to be fitted may differ in the requested number of Gaussian components or
 mModelList(X, knowns, B = NULL, P = NULL, class = NULL, kList = ncol(B), 
     init.params = NULL, stop.likelihood.change = 10^-5, stop.max.nsteps = 100, 
     trace = FALSE, mean = c("D", "E"), between = c("D", "E"), within = c("D", 
-        "E"), cov = c("D", "0"), funct = belief, all.possible.permutations = FALSE)
+        "E"), cov = c("D", "0"), funct = belief, all.possible.permutations = FALSE, ...)
         
 beliefList(..., funct=belief)
 
