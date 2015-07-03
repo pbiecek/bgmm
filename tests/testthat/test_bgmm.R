@@ -62,7 +62,6 @@ test_that("crossval.supervised", {
   }, 3)
 })
 
-
 test_that("beliefList_high_dim_8", {
   expect_equal({
     simulated = simulateData(d=8, k=3, n=100, m=70, cov="0", within="E", n.labels=2)
@@ -81,4 +80,12 @@ test_that("beliefList_high_dim_200", {
   }, "mModelList")
 })
 
+test_that("semisupervisedList_high_dim_200", {
+  expect_equal({
+    simulated = simulateData(d=8, k=3, n=100, m=70, cov="0", within="E", n.labels=3)
+    models3 = semisupervisedList(X=simulated$X, knowns=simulated$knowns, class=simulated$Ytrue[31:100],
+                         kList=3:4, mean="D", within="D")
+    class(models3)[1]
+  }, "mModelList")
+})
 
