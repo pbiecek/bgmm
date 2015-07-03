@@ -39,6 +39,9 @@ soft <- function(X, knowns, P=NULL, k=ifelse(!is.null(P),ncol(P),ifelse(!is.null
       rotationObject <- prcomp(rbind(X,knowns))
       X <- predict(rotationObject, X)[,1:pca.dim.reduction, drop=FALSE]
       knowns <- predict(rotationObject, knowns)[,1:pca.dim.reduction, drop=FALSE]
+      
+      # needs to update model params !!!
+      model.paramsK = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
     } else {
       pca.dim.reduction = FALSE
     }
