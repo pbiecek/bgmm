@@ -41,6 +41,10 @@ plot.mModelList <- function(x, ...) {
   X = x$models[[1]]$X
   knowns = x$models[[1]]$knowns
   B = x$models[[1]]$B
+  if (is.null(B)) {
+    # let's use P instead of B for plotting
+    B = x$models[[1]]$P
+  }
 #  if (d > 2) 
 #    stop("PLOT SUPPORTS ONLY 1D and 2D data")
   if (d==1) 
