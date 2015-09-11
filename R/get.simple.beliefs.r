@@ -34,7 +34,7 @@ init.model.params.knowns <- function(knowns, class, k, d) {
      cvar[i,,] = cov(knowns[class==labs[i],,drop=FALSE])
      pro[i] = mean(class==labs[i])
   } 
-  list(pi = pro, mu = mu, cvar = cvar)
+  list(pi = pro, mu = mu, cvar = cvar, d=d)
 }
 
 init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(class)), method = "all", B=P, P=NULL) {
