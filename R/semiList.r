@@ -1,10 +1,14 @@
-mModelList <- function(X, knowns, B=NULL, P=NULL, class=NULL, kList=ncol(B), init.params=NULL, stop.likelihood.change=10^-5, stop.max.nsteps=100, trace=FALSE, mean = c("D","E"), between = c("D","E"), within = c("D","E"), cov = c("D","0"), funct=belief, all.possible.permutations=FALSE, ...) {
+mModelList <- function(X = NULL, knowns = NULL, B=NULL, P=NULL, class=NULL, kList=ncol(B), init.params=NULL, stop.likelihood.change=10^-5, stop.max.nsteps=100, trace=FALSE, mean = c("D","E"), between = c("D","E"), within = c("D","E"), cov = c("D","0"), funct=belief, all.possible.permutations=FALSE, ...) {
   modelList = NULL
   nazw = NULL
   loglike = NULL
   params = NULL
   ind = 0
-  d = ncol(X)
+  if (!is.null(X)) {
+    d = ncol(X)
+  } else {
+    d = ncol(knowns)
+  }
   # 
   # for d=1 not all combinations have meaning
   if (d<2) {
@@ -14,7 +18,7 @@ mModelList <- function(X, knowns, B=NULL, P=NULL, class=NULL, kList=ncol(B), ini
   
   for (k in kList) {
     if (is.null(init.params)) {
-        model.paramsK = init.model.params(X, knowns, B=B, P=P, class=class, k=k)
+        model.paramsK = init.model.params(X=X, knowns=knowns, B=B, P=P, class=class, k=k)
       } else {
         model.paramsK = init.params
       }
@@ -29,7 +33,7 @@ mModelList <- function(X, knowns, B=NULL, P=NULL, class=NULL, kList=ncol(B), ini
                 ind = ind + 1
                 nazw[[ind]] = paste("k=",k,"  structure=",i,j,m,l,sep="")
                 
-                modelList[[ind]] = funct(X, knowns, B=B, P=P, class=class, k=k, init.params=model.paramsK, model.structure=model.settings, stop.max.nsteps=stop.max.nsteps, trace=trace, all.possible.permutations=all.possible.permutations, ...)
+                modelList[[ind]] = funct(X=X, knowns=knowns, B=B, P=P, class=class, k=k, init.params=model.paramsK, model.structure=model.settings, stop.max.nsteps=stop.max.nsteps, trace=trace, all.possible.permutations=all.possible.permutations, ...)
                 loglike[[ind]] = modelList[[ind]]$likelihood 
                 params[[ind]] = ifelse(i=="D", k*d, d) + # mean value
                                   ifelse(j=="D", k, 1) * # variance between clusters
