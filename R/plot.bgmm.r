@@ -40,7 +40,8 @@ plot.2d <-function(X, knowns, map.class, bgmm2d, ...) {
    plot(Xk, type="n", ...)
    #
    # plot unknowns
-   points(X, pch=19, col=rgb(0,0,0,0.5), cex=0.5)
+   if (!is.null(X))
+     points(X, pch=19, col=rgb(0,0,0,0.5), cex=0.5)
    #
    # plot knowns
    if (!is.null(map.class))
