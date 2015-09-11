@@ -80,7 +80,7 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
       stop("Argument class need to be specified")
   }
   # classes are only for knowns
-  stopifnot(length(class) != nrow(knowns))
+  stopifnot(length(class) == nrow(knowns))
 
   result = init.model.params.knowns(knowns, class, k, ncol(knowns)) 
 
