@@ -29,7 +29,7 @@ An list with the following elements:
  \item{knowns}{the matrix of size m rows and d columns with generated values of labeled observations,}
  \item{B}{the belief matrix of the size m rows and k columns derived for knowns matrix,}
  \item{model.params}{the list of model parameters,}
- \item{Ytrue}{indexes of the true Gaussian components from which each observation was generated.}
+ \item{Ytrue}{indexes of the true Gaussian components from which each observation was generated. Lables for knowns go first.}
 }
 \references{
   Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012), The R Package bgmm: Mixture Modeling with Uncertain Knowledge, Journal of Statistical Software.
