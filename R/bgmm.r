@@ -79,6 +79,9 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
     } else 
       stop("Argument class need to be specified")
   }
+  # classes are only for knowns
+  stopifnot(length(class) != nrow(knowns))
+
   result = init.model.params.knowns(knowns, class, k, ncol(knowns)) 
 
   # new means 
@@ -123,7 +126,10 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
   result$dof = getDFinternal(result)
   result$model.structure <- model.structure
   result$likelihood = loglikelihood.mModel(result, knowns)
-  
+
+  # create B for plotting       
+  result$B = get.simple.beliefs(class, b.min=0)
+
   result
 }
 
