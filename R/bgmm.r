@@ -122,6 +122,7 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
   
   result$dof = getDFinternal(result)
   result$model.structure <- model.structure
+  result$likelihood = loglikelihood.mModel(result, knowns)
   
   result
 }
