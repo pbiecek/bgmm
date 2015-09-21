@@ -51,9 +51,9 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
   tij =  t(apply(fik * b.pi, 1, normalize))
   class = get.labels.from.beliefs(tij)
   # add labels
-  if (!is.null(names(object$pi))) {
-    class <- names(object$pi)[class]
-  }
+#  if (!is.null(names(object$pi))) {
+#    class <- names(object$pi)[class]
+#  }
   # return predictions as two separate slots
   tij.knowns = NULL
   tij.X = tij
@@ -85,7 +85,11 @@ supervised <- function(knowns, class=NULL, k=length(unique(class)), B=NULL, P=NU
   }
   # classes are only for knowns
   stopifnot(length(class) == nrow(knowns))
-
+  
+  # permute to fix problem with labels
+  knowns <- knowns[order(class),,drop=FALSE]
+  class <- class[order(class)]
+  
   result = init.model.params.knowns(knowns, class, k, ncol(knowns)) 
 
   # new means 

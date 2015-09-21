@@ -45,10 +45,11 @@ plot.2d <-function(X, knowns, map.class, bgmm2d, ...) {
    #
    # plot knowns
    if (!is.null(map.class)) {
-     labs <- unique(map.class)
-     for (ii in seq_along(labs)) {
-       points(knowns[map.class == labs[ii],], col=ii+1, pch=ii+1, lwd=2)
-     }
+#     labs <- unique(map.class)
+#     for (ii in seq_along(labs)) {
+#       points(knowns[map.class == labs[ii],], col=ii+1, pch=ii+1, lwd=2)
+#     }
+     points(knowns, col=map.class+1, pch=map.class+1, lwd=2)
    }
    #
    # plot densities
