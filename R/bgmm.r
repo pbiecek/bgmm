@@ -50,6 +50,10 @@ predict.mModel <- function(object, X, knowns=NULL, B=NULL, P=NULL, ...) {
 
   tij =  t(apply(fik * b.pi, 1, normalize))
   class = get.labels.from.beliefs(tij)
+  # add labels
+  if (!is.null(names(object$pi))) {
+    class <- names(object$pi)[class]
+  }
   # return predictions as two separate slots
   tij.knowns = NULL
   tij.X = tij

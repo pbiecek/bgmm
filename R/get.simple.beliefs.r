@@ -33,8 +33,10 @@ init.model.params.knowns <- function(knowns, class, k, d) {
      mu[i,] = unlist(colMeans(knowns[class==labs[i],,drop=FALSE]))
      cvar[i,,] = cov(knowns[class==labs[i],,drop=FALSE])
      pro[i] = mean(class==labs[i])
-  } 
-  list(pi = pro, mu = mu, cvar = cvar, d=d)
+ } 
+ rownames(mu) = labs
+ names(pro) = labs
+ list(pi = pro, mu = mu, cvar = cvar, d=d)
 }
 
 init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(class)), method = "all", B=P, P=NULL) {
