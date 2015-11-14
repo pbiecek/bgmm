@@ -1,6 +1,9 @@
 Dev version of bgmm package
 ===========================
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/bgmm)](http://cran.r-project.org/web/packages/bgmm)
+[![Downloads](http://cranlogs.r-pkg.org/badges/bgmm)](http://cran.rstudio.com/package=bgmm)
+
 The CRAN version is here:
 http://cran.r-project.org/web/packages/bgmm/
 
