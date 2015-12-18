@@ -27,7 +27,7 @@ soft(X, knowns, P = NULL, k = ifelse(!is.null(P), ncol(P),
         class = class, B = P, k = k), 
     model.structure = getModelStructure(), stop.likelihood.change = 10^-5, 
     stop.max.nsteps = 100, trace = FALSE, b.min = 0.025, 
-	all.possible.permutations=FALSE, pca.dim.reduction = NA)    
+	all.possible.permutations=FALSE, pca.dim.reduction = NA, ...)    
     
 semisupervised(X, knowns, class = NULL, k = ifelse(!is.null(class), 
     length(unique(class)), ifelse(!is.null(B), ncol(B), ncol(P))), 
@@ -39,7 +39,7 @@ supervised(knowns, class = NULL, k = length(unique(class)), B = NULL, P = NULL,
 
 unsupervised(X, k, init.params=init.model.params(X, knowns=NULL, k=k), 
       model.structure=getModelStructure(), stop.likelihood.change=10^-5, 
-      stop.max.nsteps=100, trace=FALSE) 
+      stop.max.nsteps=100, trace=FALSE, ...) 
 }
 
 \arguments{
