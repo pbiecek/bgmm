@@ -73,6 +73,7 @@ test_that("beliefList_high_dim_8", {
 
 test_that("beliefList_high_dim_200", {
   expect_equal({
+    set.seed(1313)
     simulated = simulateData(d=200, k=3, n=100, m=70, cov="0", within="E", n.labels=3)
     models3 = beliefList(X=simulated$X, knowns=simulated$knowns, B=simulated$B,
                          kList=3:4, mean="D", within="D")
@@ -82,6 +83,7 @@ test_that("beliefList_high_dim_200", {
 
 test_that("semisupervisedList_high_dim_8", {
   expect_equal({
+    set.seed(1313)
     simulated = simulateData(d=8, k=3, n=100, m=70, cov="0", within="E", n.labels=3)
     models3 = semisupervisedList(X=simulated$X, knowns=simulated$knowns, class=simulated$Ytrue[31:100],
                          kList=3:4, mean="D", within="D")

@@ -1,7 +1,7 @@
 \name{plot.mModel}
 \alias{plot.mModel}
 \title{
-Plotting a graphical visualization of a Gaussian model or a list of models
+Plotting a Graphical Visualization of a Gaussian Model or a List of Models
 }
 \description{
 The generic function \code{plot} is used to visualize the data set and Gaussian model components fitted to this data. On the resulting plot the observations without labels are presented with  black points, whereas the labeled observations are marked by different colors and different symbols. 
