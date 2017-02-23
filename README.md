@@ -7,6 +7,11 @@ Dev version of bgmm package
 The CRAN version is here:
 http://cran.r-project.org/web/packages/bgmm/
 
+Install the dev version with
+
+```
+devtools::install_github("pbiecek/bgmm")
+```
 
 Detailed description of this package is available in paper:
 The R Package bgmm: Mixture Modeling with Uncertain Knowledge
