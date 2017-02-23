@@ -30,3 +30,11 @@ import(car)
 import(combinat)
 import(lattice)
 import(mvtnorm)
+importFrom("grDevices", "rgb")
+importFrom("graphics", "abline", "dotchart", "matplot", "mtext", "par",
+          "plot", "points", "rug")
+importFrom("stats", "cov", "dist", "dnorm", "kmeans", "prcomp",
+          "predict", "quantile", "rexp", "rnorm", "var",
+          "weighted.mean")
+importFrom("utils", "tail")
+

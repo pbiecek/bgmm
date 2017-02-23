@@ -6,7 +6,7 @@
 \alias{supervised}
 \alias{unsupervised}
 \title{
-Fitting Gaussian mixture model 
+Fitting Gaussian Mixture Model 
 }
 \description{
 These functions fit different variants of Gaussian mixture models. These variants 
