@@ -14,7 +14,8 @@ Description: Two partially supervised mixture modeling methods:
         For detailed introduction see:
         Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy
         Tiuryn (2012), The R Package bgmm: Mixture Modeling with
-        Uncertain Knowledge, Journal of Statistical Software.
+        Uncertain Knowledge, Journal of Statistical Software 
+        <doi:10.18637/jss.v047.i03>.
 Maintainer: Przemyslaw Biecek <Przemyslaw.Biecek@gmail.com>
 Depends: R (>= 2.0), mvtnorm, car, lattice, combinat
 Suggests: testthat
