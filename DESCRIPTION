@@ -1,7 +1,7 @@
 Package: bgmm
 Type: Package
 Title: Gaussian Mixture Modeling Algorithms and the Belief-Based Mixture Modeling
-Version: 1.8.2
+Version: 1.8.3
 Date: 2017-02-22
 Author: Przemyslaw Biecek \& Ewa Szczurek
 Description: Two partially supervised mixture modeling methods: 
