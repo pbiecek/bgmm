@@ -9,7 +9,7 @@ plotGIC <- function(models, penalty=2, plot.it=TRUE, ...) {
   if (length(models$models)==length(models$kList) || length(models$kList)==1) {
      # only one variable
     values = sapply(models$models, getGIC, p=penalty, ...)
-    tnames = models[[3]]
+    tnames = models$names
     names(values) = tnames
     if (plot.it) {
       ind = which.min(values)
@@ -22,7 +22,7 @@ plotGIC <- function(models, penalty=2, plot.it=TRUE, ...) {
   } else {
     values = sapply(models$models, getGIC, p=penalty, ...)
     tmp= matrix(values, ncol=length(models$kList))
-    rownames(tmp) = sapply(strsplit((models[[3]])[1:(length(models[[3]])/length(models$kList))]," "), tail,1)
+    rownames(tmp) = sapply(strsplit(as.character(models$names)[1:(length(models$names)/length(models$kList))]," "), tail,1)
     colnames(tmp) = paste("k=",models$kList,sep="")
     if (plot.it) {
       dotchart(tmp,  xlab=paste("GIC, penalty =",penalty),pch=19)
