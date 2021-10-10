@@ -2,7 +2,7 @@ citHeader("To cite bgmm in publications use:")
 
 citEntry(entry = "Article",
   title        = "The {R} Package {bgmm}: Mixture Modeling with Uncertain Knowledge",
-  author       = personList(as.person("Przemys{\\l}aw Biecek"),
+  author       = personList(as.person("Przemyslaw Biecek"),
                    as.person("Ewa Szczurek"),
                    as.person("Martin Vingron"),
                    as.person("Jerzy Tiuryn")),
@@ -11,7 +11,7 @@ citEntry(entry = "Article",
   volume       = "47",
   number       = "3",
   pages        = "1--32",
-  url          = "http://www.jstatsoft.org/v47/i03/",
+  doi          = "10.18637/jss.v047.i03",
 
   textVersion  =
   paste("Przemyslaw Biecek, Ewa Szczurek, Martin Vingron, Jerzy Tiuryn (2012).",
