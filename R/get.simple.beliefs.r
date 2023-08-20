@@ -4,7 +4,7 @@ get.simple.beliefs <- function(id, k=length(unique(id)), b.min=0.025) {
   alpha = 1-(k-1)* b.min
   bel = matrix(others, length(id), k)
   colnames(bel) = if(k==kk) unique(id) else c(unique(id), paste("Class", (kk+1):k, sep="."))
-  for (i in seq_along(id)) 
+  for (i in seq_along(id))
      bel[i,id[i]] = alpha
   bel
 }
@@ -33,7 +33,7 @@ init.model.params.knowns <- function(knowns, class, k, d) {
      mu[i,] = unlist(colMeans(knowns[class==labs[i],,drop=FALSE]))
      cvar[i,,] = cov(knowns[class==labs[i],,drop=FALSE])
      pro[i] = mean(class==labs[i])
- } 
+ }
  rownames(mu) = labs
  names(pro) = labs
  list(pi = pro, mu = mu, cvar = cvar, d=d)
@@ -47,8 +47,8 @@ init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(c
  if (!is.null(X)) d = ncol(X)
  if (is.null(class) & !is.null(B))             class = map(B)
  if (is.null(k))   length(unique(class))
- 
- if (class(class) == "factor")   class = as.numeric(class)
+
+ if (inherits(class, "factor"))   class = as.numeric(class)
  if (method == "knowns") {
      model.params = init.model.params.knowns(knowns, class, k, d)
 	 # if there is not enough labeled cases just cast an error
@@ -68,13 +68,13 @@ init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(c
       pro = 1
       model.params = list(pi = pro, mu = mu, cvar = cvar)
     } else {
-      kres = kmeans(kX, k, nstart=10) 
+      kres = kmeans(kX, k, nstart=10)
       labs = 1:k
       for (i in 1:k) {
          mu[i,] = unlist(colMeans(kX[kres$cluster==labs[i],,drop=F]))
          cvar[i,,] = cov(kX[kres$cluster==labs[i],,drop=F])
          pro[i] = mean(kres$cluster==labs[i])
-      } 
+      }
       model.params = list(pi = pro, mu = mu, cvar = cvar)
     }
     if (!is.null(knowns) & !is.null(class)) {
@@ -82,7 +82,7 @@ init.model.params <- function(X=NULL, knowns=NULL, class=NULL, k=length(unique(c
        model.params = permute.model.params(model.params, clParams$li)
     }
  }
- 
+
  model.params
 }
 
