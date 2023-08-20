@@ -2,7 +2,7 @@ citHeader("To cite bgmm in publications use:")
 
 citEntry(entry = "Article",
   title        = "The {R} Package {bgmm}: Mixture Modeling with Uncertain Knowledge",
-  author       = personList(as.person("Przemyslaw Biecek"),
+  author       = c(as.person("Przemyslaw Biecek"),
                    as.person("Ewa Szczurek"),
                    as.person("Martin Vingron"),
                    as.person("Jerzy Tiuryn")),

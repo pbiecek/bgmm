@@ -12,7 +12,7 @@ This package implements partially supervised mixture modeling methods: soft-labe
 For short overview see the webpage http://bgmm.molgen.mpg.de/rapBGMM/.
 }
 \author{
-Przemyslaw Biecek \& Ewa Szczurek
+Przemyslaw Biecek and Ewa Szczurek
 
 Maintainer: Przemyslaw Biecek <Przemyslaw.Biecek@gmail.com>
 }
