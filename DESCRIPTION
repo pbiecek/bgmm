@@ -2,7 +2,13 @@ Package: bgmm
 Type: Package
 Title: Gaussian Mixture Modeling Algorithms and the Belief-Based Mixture Modeling
 Version: 1.8.6
-Author: Przemyslaw Biecek and Ewa Szczurek
+Authors@R: c(person(given = "Przemyslaw",
+                    family = "Biecek",
+                    email = "Przemyslaw.Biecek@gmail.com",
+                    role = "cre"),
+             person(given = "Ewa",
+                    family = "Szczurek",
+                    role = "aut"))
 Description: Two partially supervised mixture modeling methods: 
         soft-label and belief-based modeling are implemented.
         For completeness, we equipped the package also with the
@@ -15,7 +21,6 @@ Description: Two partially supervised mixture modeling methods:
         Tiuryn (2012), The R Package bgmm: Mixture Modeling with
         Uncertain Knowledge, Journal of Statistical Software 
         <doi:10.18637/jss.v047.i03>.
-Maintainer: Przemyslaw Biecek <Przemyslaw.Biecek@gmail.com>
 Depends: R (>= 2.0), mvtnorm, car, lattice, combinat
 Suggests: testthat
 URL: http://bgmm.molgen.mpg.de/
